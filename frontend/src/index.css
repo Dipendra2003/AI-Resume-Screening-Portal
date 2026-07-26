@@ -3,3 +3,129 @@
 @theme {
   --font-sans: "Plus Jakarta Sans", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+
+/* ─── Custom Keyframe Animations ─────────────────────────────────── */
+
+/* Fade in and rise up */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Gentle floating bob */
+@keyframes floatY {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-8px); }
+}
+
+/* Slow horizontal drift for floating tags */
+@keyframes floatX {
+  0%, 100% { transform: translateX(0px) translateY(0px); }
+  33%       { transform: translateX(5px) translateY(-5px); }
+  66%       { transform: translateX(-3px) translateY(-8px); }
+}
+
+/* Bar chart grow from bottom */
+@keyframes growUp {
+  from { transform: scaleY(0); transform-origin: bottom; }
+  to   { transform: scaleY(1); transform-origin: bottom; }
+}
+
+/* Pulse scale for dots / badges */
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50%       { opacity: 0.5; transform: scale(1.5); }
+}
+
+/* Slide right for slider thumb */
+@keyframes slideInRight {
+  from { transform: translateX(-40px) translateY(-50%); opacity: 0; }
+  to   { transform: translateX(0) translateY(-50%); opacity: 1; }
+}
+
+/* Shimmer across a surface */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+/* Scale in */
+@keyframes scaleIn {
+  from { opacity: 0; transform: scale(0.85); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+/* Bounce in down */
+@keyframes bounceInDown {
+  0%   { opacity: 0; transform: translateY(-30px); }
+  60%  { opacity: 1; transform: translateY(5px); }
+  80%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+/* ─── Utility Animation Classes ───────────────────────────────────── */
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-float-y {
+  animation: floatY 4s ease-in-out infinite;
+}
+
+.animate-float-x {
+  animation: floatX 6s ease-in-out infinite;
+}
+
+.animate-grow-up {
+  animation: growUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) both;
+  transform-origin: bottom;
+}
+
+.animate-pulse-dot {
+  animation: pulseDot 1.4s ease-in-out infinite;
+}
+
+.animate-scale-in {
+  animation: scaleIn 0.5s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-bounce-in-down {
+  animation: bounceInDown 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+/* Delay helpers */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+.delay-600 { animation-delay: 0.6s; }
+.delay-700 { animation-delay: 0.7s; }
+.delay-800 { animation-delay: 0.8s; }
+.delay-1000 { animation-delay: 1s; }
+.delay-1200 { animation-delay: 1.2s; }
+
+/* Shimmer card hover effect */
+.card-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+.card-shimmer::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%);
+  background-size: 200% 100%;
+  opacity: 0;
+  transition: opacity 0.3s;
+  pointer-events: none;
+}
+.card-shimmer:hover::after {
+  opacity: 1;
+  animation: shimmer 0.8s linear;
+}
